@@ -1,0 +1,69 @@
+[
+  {
+    "title": "Bless your spouse out loud (one sentence).",
+    "mode": "FAITH",
+    "loveLanguage": "ANY",
+    "timeNeededMinutes": 2,
+    "intimacyLevelMin": "PG",
+    "seasonTags": [],
+    "steps": [
+      "Say one blessing over your spouse.",
+      "End with: 'I'm on your side today.'"
+    ],
+    "messageTemplate": "I\u2019m blessing you today: _____. I\u2019m on your side.",
+    "whyItHelps": "Sets tone and unity with a quick faith-centered micro-ritual.",
+    "pointsAwarded": 5
+  },
+  {
+    "title": "7-minute couch talk (no screens).",
+    "mode": "EMOTIONAL",
+    "loveLanguage": "QUALITY_TIME",
+    "timeNeededMinutes": 7,
+    "intimacyLevelMin": "PG",
+    "seasonTags": [
+      "BUSY"
+    ],
+    "steps": [
+      "Set a 7-minute timer.",
+      "Each share 1 win + 1 weight.",
+      "End with one sentence: 'How can I support you?'"
+    ],
+    "messageTemplate": "Can we do a 7-min couch talk tonight? No screens\u2014just us.",
+    "whyItHelps": "Creates emotional safety and connection in a doable timeframe.",
+    "pointsAwarded": 7
+  },
+  {
+    "title": "10-second hug at the door.",
+    "mode": "PHYSICAL",
+    "loveLanguage": "TOUCH",
+    "timeNeededMinutes": 2,
+    "intimacyLevelMin": "PG",
+    "seasonTags": [],
+    "steps": [
+      "Hug for 10 seconds.",
+      "Breathe slowly together.",
+      "Whisper: 'I missed you.'"
+    ],
+    "messageTemplate": "When we see each other, can we do our 10-second hug?",
+    "whyItHelps": "Small physical connection reduces stress and increases closeness.",
+    "pointsAwarded": 5
+  },
+  {
+    "title": "Do one helpful thing in 10 minutes.",
+    "mode": "ACTIONABLE",
+    "loveLanguage": "ACTS",
+    "timeNeededMinutes": 7,
+    "intimacyLevelMin": "PG",
+    "seasonTags": [
+      "PARENTING_OVERLOAD"
+    ],
+    "steps": [
+      "Pick one small task your spouse dislikes.",
+      "Do it now without announcing it.",
+      "After, text: 'I took care of ____ for you.'"
+    ],
+    "messageTemplate": "I\u2019m handling ____ for you today \ud83d\udc9b",
+    "whyItHelps": "Practical support builds trust and reduces mental load.",
+    "pointsAwarded": 7
+  }
+]

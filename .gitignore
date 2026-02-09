@@ -1,0 +1,10 @@
+node_modules
+dist
+.next
+expo/.expo
+apps/**/.env
+apps/**/.env.local
+apps/**/dev.db
+apps/**/prisma/dev.db
+coverage
+.DS_Store

@@ -1,0 +1,27 @@
+[
+  {
+    "name": "I\u2019m with you",
+    "emoji": "\ud83d\udc9b",
+    "meaning": "Unity + reassurance",
+    "linkedActionTitles": [
+      "7-minute couch talk (no screens).",
+      "Bless your spouse out loud (one sentence)."
+    ]
+  },
+  {
+    "name": "Reset?",
+    "emoji": "\ud83e\udef6",
+    "meaning": "Repair after tension",
+    "linkedActionTitles": [
+      "Bless your spouse out loud (one sentence)."
+    ]
+  },
+  {
+    "name": "Tonight is ours",
+    "emoji": "\ud83d\udd25",
+    "meaning": "Romantic intention",
+    "linkedActionTitles": [
+      "10-second hug at the door."
+    ]
+  }
+]

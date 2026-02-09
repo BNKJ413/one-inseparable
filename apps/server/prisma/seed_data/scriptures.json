@@ -1,0 +1,60 @@
+[
+  {
+    "reference": "Song of Solomon 7:10",
+    "category": "ROMANCE_INTIMACY",
+    "tags": [
+      "desire",
+      "romance",
+      "belonging"
+    ],
+    "marriageMeaning": "Romance isn\u2019t ungodly\u2014marital desire can be holy and bonding.",
+    "prayerPrompt": "Lord, help us enjoy each other with honor and joy.",
+    "actionPrompt": "Send a flirty-but-honoring message + schedule 20 minutes tonight.",
+    "battleType": null,
+    "intensity": "GENTLE",
+    "isFeatured": true
+  },
+  {
+    "reference": "Proverbs 15:1",
+    "category": "COMMUNICATION_WORDS",
+    "tags": [
+      "soft start",
+      "de-escalation"
+    ],
+    "marriageMeaning": "Tone matters. Soft starts prevent unnecessary damage.",
+    "prayerPrompt": "God, help our words bring peace.",
+    "actionPrompt": "Redo one sentence gently.",
+    "battleType": null,
+    "intensity": "DIRECT",
+    "isFeatured": false
+  },
+  {
+    "reference": "Philippians 4:8",
+    "category": "GUARD_MIND",
+    "tags": [
+      "focus",
+      "purity",
+      "mental diet"
+    ],
+    "marriageMeaning": "What you dwell on shapes your relationship.",
+    "prayerPrompt": "Help me guard my mind and protect our oneness.",
+    "actionPrompt": "Remove one mental trigger today.",
+    "battleType": "COMPARISON",
+    "intensity": "DIRECT",
+    "isFeatured": false
+  },
+  {
+    "reference": "1 Corinthians 10:13",
+    "category": "PURITY_TEMPTATION",
+    "tags": [
+      "temptation",
+      "escape"
+    ],
+    "marriageMeaning": "Temptation isn\u2019t unbeatable\u2014there\u2019s always an exit.",
+    "prayerPrompt": "God, show me the way of escape and strengthen my will.",
+    "actionPrompt": "Choose your exit plan: block, leave, call spouse, pray.",
+    "battleType": "LUST",
+    "intensity": "STRONG",
+    "isFeatured": false
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "name": "one-inseparable-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node ./scripts/dev.mjs",
+    "build": "npm -w apps/server run build && npm -w apps/web run build",
+    "lint": "npm -w apps/web run lint && npm -w apps/server run lint",
+    "typecheck": "npm -w apps/web run typecheck && npm -w apps/server run typecheck",
+    "db:migrate": "npm -w apps/server run db:migrate",
+    "db:seed": "npm -w apps/server run db:seed",
+    "start": "node ./scripts/start.mjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}

@@ -1,0 +1,241 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Plan {
+  FREE
+  MEMBER
+}
+
+enum TensionType {
+  MISCOMMUNICATION
+  HURT
+  ANGER
+  WITHDRAWAL
+  ONGOING
+}
+
+enum BattleType {
+  LUST
+  RESENTMENT
+  COMPARISON
+  FEAR
+  BITTERNESS
+  ANGER
+  PRIDE
+  UNFORGIVENESS
+}
+
+model User {
+  id           String   @id @default(cuid())
+  firstName    String
+  email        String   @unique
+  passwordHash String
+  timezone     String   @default("America/New_York")
+  faithMode    Boolean  @default(true)
+  loveLang1    String   @default("WORDS")
+  loveLang2    String   @default("QUALITY_TIME")
+  intimacyLevel String  @default("PG")
+  avoidTopics  String   @default("[]") // json string
+  anchorTimes  String   @default("{}") // json string
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  coupleId     String?
+  couple       Couple?  @relation(fields: [coupleId], references: [id])
+
+  subscriptions Subscription[]
+  donations     Donation[]
+  actionLogs    ActionLog[]
+  savedScriptures SavedScripture[]
+}
+
+model Couple {
+  id        String   @id @default(cuid())
+  inviteCode String  @unique
+  status    String   @default("MARRIED")
+  season    String   @default("NORMAL")
+  kidsNotes String   @default("{}") // json
+  streak    Int      @default(0)
+  lastConnectionAt DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  users     User[]
+  dailyAnchors DailyAnchor[]
+  actionLogs ActionLog[]
+  tensionEvents TensionEvent[]
+  stickerDefinitions StickerDefinition[]
+  stickerMessages StickerMessage[]
+  rewardLedger RewardLedger[]
+  datePlans DatePlan[]
+}
+
+model DailyAnchor {
+  id        String   @id @default(cuid())
+  coupleId  String
+  date      String   // YYYY-MM-DD
+  mode      String   // FAITH/EMOTIONAL/PHYSICAL/ACTIONABLE
+  scriptureId String?
+  principleText String?
+  actionIdeaId String
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  completedAt DateTime?
+
+  couple    Couple   @relation(fields: [coupleId], references: [id])
+  scripture Scripture? @relation(fields: [scriptureId], references: [id])
+  actionIdea ActionIdea @relation(fields: [actionIdeaId], references: [id])
+}
+
+model Scripture {
+  id        String @id @default(cuid())
+  reference String
+  category  String
+  tags      String @default("[]") // json
+  marriageMeaning String
+  prayerPrompt String?
+  actionPrompt String
+  battleType BattleType?
+  intensity String @default("GENTLE")
+  isFeatured Boolean @default(false)
+
+  savedBy   SavedScripture[]
+}
+
+model SavedScripture {
+  id         String @id @default(cuid())
+  userId     String
+  scriptureId String
+  note       String?
+  savedAt    DateTime @default(now())
+
+  user       User @relation(fields: [userId], references: [id])
+  scripture  Scripture @relation(fields: [scriptureId], references: [id])
+}
+
+model ActionIdea {
+  id        String @id @default(cuid())
+  title     String
+  mode      String
+  loveLanguage String @default("ANY")
+  timeNeededMinutes Int
+  intimacyLevelMin String @default("PG")
+  seasonTags String @default("[]") // json
+  steps     String @default("[]") // json
+  messageTemplate String?
+  whyItHelps String
+  pointsAwarded Int @default(5)
+
+  anchors   DailyAnchor[]
+  logs      ActionLog[]
+  linkedBy  StickerDefinition[] @relation("StickerLinkedActions")
+}
+
+model ActionLog {
+  id        String @id @default(cuid())
+  coupleId  String
+  userId    String
+  actionIdeaId String
+  completedAt DateTime @default(now())
+  completionType String @default("DO_NOW")
+
+  couple   Couple @relation(fields: [coupleId], references: [id])
+  user     User @relation(fields: [userId], references: [id])
+  actionIdea ActionIdea @relation(fields: [actionIdeaId], references: [id])
+}
+
+model TensionEvent {
+  id        String @id @default(cuid())
+  coupleId  String
+  createdByUserId String
+  type      TensionType
+  status    String @default("OPEN")
+  createdAt DateTime @default(now())
+  resolvedAt DateTime?
+
+  couple    Couple @relation(fields: [coupleId], references: [id])
+}
+
+model StickerDefinition {
+  id        String @id @default(cuid())
+  coupleId  String?
+  createdByUserId String?
+  name      String
+  emoji     String
+  meaning   String?
+  isPreset  Boolean @default(false)
+
+  couple    Couple? @relation(fields: [coupleId], references: [id])
+
+  linkedActions ActionIdea[] @relation("StickerLinkedActions")
+  messages StickerMessage[]
+}
+
+model StickerMessage {
+  id        String @id @default(cuid())
+  coupleId  String
+  fromUserId String
+  toUserId  String
+  stickerId String
+  sentAt    DateTime @default(now())
+  note      String?
+
+  couple    Couple @relation(fields: [coupleId], references: [id])
+  sticker   StickerDefinition @relation(fields: [stickerId], references: [id])
+}
+
+model RewardLedger {
+  id        String @id @default(cuid())
+  coupleId  String
+  userId    String
+  type      String // EARN/REDEEM
+  points    Int
+  reason    String
+  meta      String? // json
+  createdAt DateTime @default(now())
+
+  couple    Couple @relation(fields: [coupleId], references: [id])
+}
+
+model DatePlan {
+  id        String @id @default(cuid())
+  coupleId  String
+  title     String
+  scheduledFor DateTime
+  type      String @default("HOME")
+  planNotes String?
+  reminderEnabled Boolean @default(true)
+
+  couple    Couple @relation(fields: [coupleId], references: [id])
+}
+
+model Subscription {
+  id        String @id @default(cuid())
+  userId    String
+  status    String
+  plan      Plan   @default(FREE)
+  provider  String @default("STRIPE")
+  providerRef String?
+  startedAt DateTime @default(now())
+  endsAt    DateTime?
+
+  user      User @relation(fields: [userId], references: [id])
+}
+
+model Donation {
+  id        String @id @default(cuid())
+  userId    String?
+  amount    Int
+  currency  String @default("usd")
+  type      String // ONE_TIME | MONTHLY
+  note      String?
+  createdAt DateTime @default(now())
+
+  user      User? @relation(fields: [userId], references: [id])
+}
