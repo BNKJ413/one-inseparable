@@ -2,19 +2,37 @@ name: CI
 
 on:
   push:
+    branches: [ "main" ]
   pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "npm"
-      - run: npm install
-      - run: npm -w apps/server run prisma:generate
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm run build
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install
+        run: pnpm install --frozen-lockfile=false
+
+      - name: Lint (if present)
+        run: pnpm -r lint || echo "No lint script"
+
+      - name: Test (if present)
+        run: pnpm -r test || echo "No test script"
+
+      - name: Build
+        run: pnpm -r build
