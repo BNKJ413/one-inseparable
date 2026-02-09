@@ -43,6 +43,7 @@ npm run dev
 - Web: http://localhost:3000
 - Server: http://localhost:4000
 - Swagger-ish health: http://localhost:4000/health
+  
 
 ## Stripe + Donations + “International payment methods”
 This MVP uses **Stripe Checkout** with `automatic_payment_methods` enabled, so Stripe can show eligible payment methods for a customer automatically (cards + wallets + local methods, depending on country/currency and your dashboard settings). See Stripe docs: payment methods overview and country support tables.
@@ -68,6 +69,13 @@ GitHub Actions workflow:
 
 ## Store Launch (Checklist)
 See `docs/store-launch.md`.
+
+## Prisma (Important)
+All Prisma commands must be run from:
+apps/server
+Example:
+npm run db:generate
+npm run db:migrate
 
 ---
 
